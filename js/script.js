@@ -10,7 +10,7 @@ let prevNumber = "";
 let calculation = "";
 
 const inputNumber = function (number) {
-    if (currentNumber === "0") {
+    if(currentNumber === "0") {
         currentNumber = number;
     } else {
         currentNumber = currentNumber + number;
@@ -22,14 +22,16 @@ const updateScreen = function (number) {
 };
 
 const inputOperator = function (operator) {
+
     if (calculation === "") {
         prevNumber = currentNumber;
-    };
+    }
     calculation = operator;
-    currentNumber = "0";
-};
 
-const calculate = function() {
+    currentNumber = "";
+}
+
+const calculate = function () {
     let result = "";
     switch (calculation) {
         case "+":
@@ -43,10 +45,10 @@ const calculate = function() {
             break;
         case "/":
             result = prevNumber / currentNumber;
-            break
+            break;
         default:
-            return;
-    };
+            break;
+    }
     currentNumber = result;
     calculation = "";
 };
@@ -60,11 +62,11 @@ const clear = function () {
 const inputDecimal = function (decimal) {
     if (currentNumber.includes(".")) {
         return;
-    };
+    }
     currentNumber += decimal;
 };
 
-allClear.addEventListener("click", function (e) {
+allClear.addEventListener("click", function () {
     clear();
     updateScreen(currentNumber);
 });
@@ -82,8 +84,8 @@ numbers.forEach((number) => {
 });
 
 operators.forEach(function (operator) {
-    operator.addEventListener("click", function (e) {
-        inputOperator(e.targer.value);
+    operator.addEventListener("click", function(e) {
+        inputOperator(e.target.value);
     });
 });
 
